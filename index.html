@@ -53,6 +53,12 @@ p{margin:0}
 .ico svg{width:28px;height:28px;stroke:var(--royal);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .card h3{font-size:1.3rem;line-height:1.2}
 .card p{color:var(--muted);font-size:.95rem;margin-top:-6px}
+/* client voices */
+.voices{padding-block:0 clamp(44px,8vw,72px)}
+.voices .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px}
+.voices h2{font-size:clamp(1.5rem,4.5vw,2rem);line-height:1.15}
+.voices p{margin-top:6px;color:var(--muted);font-size:1rem;max-width:30em}
+.btn.ghost{background:transparent;color:var(--royal);border:1.5px solid var(--royal)}
 /* how */
 .how{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(40px,7vw,60px)}
 .steps{margin:24px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;position:relative}
@@ -149,22 +155,20 @@ p{margin:0}
     <h2>Your clients are in <em>expert hands.</em> So is your name.</h2>
     <div class="grid">
       <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M9 14l2 2 4-4"/></svg></span><h3>Former claims assessor</h3><p>Senior claims roles from Auckland to London.</p></div>
-      <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.500-3.400 7.800-8 9-4.600-1.200-8-4.500-8-9V6z"/><path d="M12 9v6M9 12h6"/></svg></span><h3>Medical specialist</h3><p>Inside a claims team.</p></div>
+      <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><h3>Financial security, delivered</h3><p>Protecting what matters most for families across Australia.</p></div>
       <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.500-3.400 7.800-8 9-4.600-1.200-8-4.500-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></svg></span><h3>Pre-existing conditions</h3><p>Optimal policies for clients who have them.</p></div>
       <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><circle cx="12" cy="14" r="3"/><path d="M14.200 16.200L16 18"/></svg></span><h3>PDS expertise</h3><p>The definitions and exclusions that decide a claim.</p></div>
     </div>
   </div>
 </section>
 
-<section class="how">
+<section class="voices" aria-label="Client testimonials">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <ol class="steps">
-      <li><span class="num">1</span><b>You introduce</b><span>Send a name and number, with your client's consent.</span></li>
-      <li><span class="num">2</span><b>I reach out</b><span>Your client hears from me within one business day.</span></li>
-      <li><span class="num">3</span><b>Free health check</b><span>Their cover reviewed in plain English, with no obligation.</span></li>
-      <li><span class="num">4</span><b>You are updated</b><span>With their consent, you are told when it is done.</span></li>
-    </ol>
+    <div>
+      <h2>Hear what my clients have to say</h2>
+      <p>Real feedback from the families and professionals I look after.</p>
+    </div>
+    <a class="btn ghost" href="https://insuranceguru.au/#testimonials" target="_blank" rel="noopener">Read client testimonials</a>
   </div>
 </section>
 
@@ -181,13 +185,12 @@ p{margin:0}
       <div>
         <label for="n">Clients you introduce who take out cover</label>
         <div class="n" id="nOut" aria-hidden="true">12</div>
-        <input id="n" type="range" min="0" max="100" step="1" value="12">
-        <div class="ticks"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span></div>
+        <input id="n" type="range" min="0" max="50" step="1" value="12">
+        <div class="ticks"><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>&infin;</span></div>
       </div>
       <div class="out" aria-live="polite">
-        <div class="k">Referral rewards</div>
-        <div class="big" id="total">$0</div>
-        <div class="line" id="line"></div>
+        <div class="k">Reward per client</div>
+        <div class="big" id="total">$200</div>
         <div class="gates" id="gates"></div>
       </div>
     </div>
@@ -220,15 +223,14 @@ p{margin:0}
   var GATES=[{from:1,to:5,per:200},{from:6,to:20,per:300},{from:21,to:39,per:400},{from:40,to:Infinity,per:500}];
   var $=function(i){return document.getElementById(i)};
   var money=function(v){return '$'+Math.round(v).toLocaleString('en-AU')};
-  function total(n){var t=0;GATES.forEach(function(g){var c=Math.max(0,Math.min(n,g.to)-g.from+1);t+=c*g.per});return t}
+  function gateFor(n){return GATES.filter(function(g){return n>=g.from&&n<=g.to})[0]||GATES[0]}
   var gatesEl=$('gates');
-  var boxes=GATES.map(function(g,i){var d=document.createElement('div');d.className='gate';var b=document.createElement('b');b.textContent='Gate '+(i+1);var s=document.createElement('span');s.textContent=(g.to===Infinity?'Client '+g.from+' onwards':(g.to===g.from?'Client '+g.from:'Clients '+g.from+' to '+g.to))+', '+money(g.per)+' each';d.appendChild(b);d.appendChild(s);gatesEl.appendChild(d);return d});
+  var boxes=GATES.map(function(g,i){var d=document.createElement('div');d.className='gate';var b=document.createElement('b');b.textContent='Gate '+(i+1);var s=document.createElement('span');s.textContent=(g.to===Infinity?g.from+'+ clients':g.from+'\u2013'+g.to+' clients')+' \u00b7 '+money(g.per)+' per client';d.appendChild(b);d.appendChild(s);gatesEl.appendChild(d);return d});
   function render(){
     var n=parseInt($('n').value,10)||0;
-    $('nOut').textContent=n;
-    $('total').textContent=money(total(n));
-    var next=GATES.filter(function(g){return n+1>=g.from&&n+1<=g.to})[0];
-    $('line').textContent=n===0?'Move the slider to see what introductions are worth.':'Your next client earns you '+money(next.per)+'.';
+    $('nOut').textContent=n>=50?'\u221e':n;
+    var cur=gateFor(n);
+    $('total').textContent=money(cur.per);
     boxes.forEach(function(d,i){var g=GATES[i];d.classList.toggle('on',n>=g.from&&n<=g.to);d.classList.toggle('done',n>g.to)});
   }
   $('n').addEventListener('input',render);render();
