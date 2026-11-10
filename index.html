@@ -43,10 +43,18 @@ p{margin:0}
 .stat:first-child{padding-left:0;border-left:0}
 .stat b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,5vw,2.3rem);line-height:1.1;color:var(--band-title,var(--ink))}
 .stat span{display:block;margin-top:4px;font-size:.85rem;line-height:1.4;color:var(--muted)}
+/* power band */
+.power{background:var(--band);color:var(--band-fg);padding-block:clamp(40px,7vw,60px)}
+.power h2{font-size:clamp(1.7rem,5vw,2.3rem);line-height:1.1}
+.power p{margin-top:14px;max-width:40em;color:var(--band-muted);font-size:1.05rem}
+.power ul{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.power li{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 16px;font-weight:500;font-size:.95rem}
+.power li svg{width:16px;height:16px;flex:none;stroke:#8FB0FF;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 /* credentials */
 .creds{padding-block:clamp(44px,8vw,72px)}
 .creds h2{font-size:clamp(1.8rem,5.5vw,2.5rem);line-height:1.1;margin-top:10px;max-width:16em}
 .creds h2 em{font-style:normal;color:var(--royal)}
+.creds .sublede{margin-top:14px;max-width:36em;color:var(--muted);font-size:1.05rem}
 .grid{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
 .ico{width:52px;height:52px;border-radius:14px;background:var(--surface-2);display:grid;place-items:center}
@@ -141,11 +149,16 @@ p{margin:0}
   </div>
 </header>
 
-<section class="stats" aria-label="Track record">
+<section class="power" aria-label="The Power of Life Insurance">
   <div class="wrap">
-    <div class="stat"><b>600+</b><span>Clients</span></div>
-    <div class="stat"><b>$600m+</b><span>Life cover</span></div>
-    <div class="stat"><b>36+</b><span>Claims supported in the last 2 years</span></div>
+    <h2>The Power of Life Insurance</h2>
+    <p>Expert insurance adviser. Over the years, I've worked with so many families, in so many different situations, with one aim: getting the most from life insurance. Every policy is built to protect what matters most to each family.</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Health assessed upfront</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Strong benefits</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sustainable premiums</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No nasty surprises</li>
+    </ul>
   </div>
 </section>
 
@@ -153,6 +166,7 @@ p{margin:0}
   <div class="wrap">
     <p class="eyebrow">20+ years in life insurance, claims and policy management</p>
     <h2>Your clients are in <em>expert hands.</em> So is your name.</h2>
+    <p class="sublede">Experts in policy structuring to ensure sustainable premiums. We compare multiple insurers, handle the paperwork and stay with clients until claim time.</p>
     <div class="grid">
       <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M9 14l2 2 4-4"/></svg></span><h3>Former claims assessor</h3><p>Senior claims roles from Auckland to London.</p></div>
       <div class="card"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg></span><h3>Financial security, delivered</h3><p>Protecting what matters most for families across Australia.</p></div>
@@ -179,7 +193,6 @@ p{margin:0}
     <p class="lead">You earn with just a warm introduction. We do the rest.</p>
     <div class="proofrow">
       <div class="pf"><b>85%+</b><span>conversion</span></div>
-      <div class="pf"><b>92%+</b><span>client retention</span></div>
     </div>
     <div class="simcard">
       <div>
